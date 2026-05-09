@@ -1,0 +1,29 @@
+# Python
+*.py[cod]
+__pycache__/
+
+# Environment variables
+.env
+
+# Reflex
+.web/
+.states/
+
+# Database
+*.db
+
+# External assets
+assets/external/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
