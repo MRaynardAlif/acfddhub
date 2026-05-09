@@ -1,24 +1,17 @@
 import os
 import reflex as rx
-
+from pathlib import Path
 from supabase import create_client, Client
+from dotenv import load_dotenv
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+# Force dotenv to look in the root folder, not the PWATrial folder
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
-print("SUPABASE_URL =", SUPABASE_URL)
-print("SUPABASE_KEY EXISTS =", bool(SUPABASE_KEY))
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-if not SUPABASE_URL:
-    raise ValueError("SUPABASE_URL not found")
-
-if not SUPABASE_KEY:
-    raise ValueError("SUPABASE_KEY not found")
-
-supabase: Client = create_client(
-    SUPABASE_URL,
-    SUPABASE_KEY
-)
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 # =========================================================
 # STATE
 # =========================================================
