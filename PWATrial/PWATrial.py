@@ -1,27 +1,13 @@
 import os
 import reflex as rx
 
-from pathlib import Path
-from dotenv import load_dotenv
 from supabase import create_client, Client
 
-# =========================================================
-# LOAD ENV
-# =========================================================
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_FILE = BASE_DIR / ".env"
-
-print("BASE_DIR =", BASE_DIR)
-print("ENV_FILE =", ENV_FILE)
-print("ENV EXISTS =", ENV_FILE.exists())
-
-load_dotenv(dotenv_path=ENV_FILE)
-
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
 print("SUPABASE_URL =", SUPABASE_URL)
+print("SUPABASE_KEY EXISTS =", bool(SUPABASE_KEY))
 
 if not SUPABASE_URL:
     raise ValueError("SUPABASE_URL not found")
