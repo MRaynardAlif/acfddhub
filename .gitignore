@@ -4,10 +4,18 @@ __pycache__/
 
 # Environment variables
 .env
+.env.example
 
 # Reflex
 .web/
 .states/
+.reflex/
+
+# Build artifacts
+build/
+dist/
+*.log
+.web_build/
 
 # Database
 *.db
@@ -27,3 +35,6 @@ env/
 # IDE
 .vscode/
 .idea/
+
+# Node (future-proof)
+node_modules/

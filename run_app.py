@@ -11,19 +11,18 @@ import os
 
 
 def main():
-
     print("Starting Reflex app...\n")
 
     env = os.environ.copy()
-
     env["PYTHONIOENCODING"] = "utf-8"
     env["PYTHONUTF8"] = "1"
 
-    try:
+    process = None
 
+    try:
         process = subprocess.Popen(
             ["reflex", "run"],
-            shell=True,
+            cwd=os.path.dirname(os.path.abspath(__file__)),
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -40,11 +39,12 @@ def main():
         process.wait()
 
     except KeyboardInterrupt:
-
         print("\nStopping Reflex app...")
+        if process:
+            process.terminate()
+            process.wait()
 
     except Exception as e:
-
         print(f"Unexpected Error: {e}")
 
 
